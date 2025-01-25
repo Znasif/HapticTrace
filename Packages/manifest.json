@@ -3,6 +3,7 @@
     "com.meta.xr.sdk.core": "69.0.1",
     "com.meta.xr.sdk.interaction": "68.0.1",
     "com.meta.xr.sdk.interaction.ovr": "69.0.2",
+    "com.openai.unity": "8.5.0",
     "com.unity.collab-proxy": "2.5.2",
     "com.unity.feature.development": "1.0.2",
     "com.unity.mobile.android-logcat": "1.4.3",
@@ -12,6 +13,7 @@
     "com.unity.visualscripting": "1.9.4",
     "com.unity.xr.management": "4.5.0",
     "com.unity.xr.oculus": "4.3.0",
+    "com.whisper.unity": "https://github.com/Macoron/whisper.unity.git?path=/Packages/com.whisper.unity",
     "com.unity.modules.accessibility": "1.0.0",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
@@ -52,6 +54,15 @@
       "scopes": [
         "jp.keijiro"
       ]
+    },
+    {
+      "name": "OpenUPM",
+      "url": "https://package.openupm.com",
+      "scopes": [
+        "com.openai",
+        "com.utilities"
+      ],
+      "overrideBuiltIns": false
     }
   ]
 }
