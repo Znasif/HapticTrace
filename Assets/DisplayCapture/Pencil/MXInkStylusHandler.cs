@@ -11,9 +11,9 @@ public class MXInkStylusHandler : MonoBehaviour
     [SerializeField] private GameObject leftController;
     [SerializeField] private GameObject rightController;
 
-    public Color activeColor = Color.green;
+    public Color activeColor = Color.white;
     public Color doubleTapActiveColor = Color.cyan;
-    public Color defaultColor = Color.white;
+    public Color defaultColor = Color.green;
 
     private StylusInputs stylus;
     private LineRenderer currentLine;
