@@ -11,7 +11,6 @@ namespace Anaglyph.DisplayCapture
 
 		public bool startScreenCaptureOnStart = true;
 		public bool flipTextureOnGPU = false;
-		public byte[] imageBytes;
 
         [SerializeField] private Vector2Int textureSize = new(1024, 1024);
 		public Vector2Int Size => textureSize;
@@ -106,14 +105,6 @@ namespace Anaglyph.DisplayCapture
 		private unsafe void OnNewFrameAvailable()
 		{
 			if (imageData == default) return;
-			else
-			{
-                imageBytes = new byte[bufferSize];
-                for (int i = 0; i < bufferSize; i++)
-                {
-                    imageBytes[i] = (byte)imageData[i];
-                }
-            }
 			screenTexture.LoadRawTextureData((IntPtr)imageData, bufferSize);
 			screenTexture.Apply();
 

@@ -39,7 +39,12 @@ public class ChatClientSimple : MonoBehaviour
     public DisplayCaptureManager displayCaptureManager;
 
     private string clientId;
-    private const string DefaultUrl = "https://hack-vduz.onrender.com/process-image";
+    //#if UNITY_ANDROID && !UNITY_EDITOR
+    //       // Native Quest
+    //       private const string DefaultUrl = "https://hack-vduz.onrender.com/process-image";
+    //#else
+    private const string DefaultUrl = "http://localhost:8000/process-image";
+    //#endif
     private const string MX_Ink_MiddleForce = "middle";
     private bool isRecording = false;
 
@@ -91,29 +96,30 @@ public class ChatClientSimple : MonoBehaviour
     public IEnumerator QueryServer(string url = DefaultUrl)
     {
         WWWForm form = new WWWForm();
-        byte[] imageData = new byte[200 * 200 * 4]; // 4 bytes per pixel for RGBA
-        Color32[] pixels = new Color32[200 * 200];
+        byte[] pngData = null;
 
-        // Create image data
+        //#if UNITY_ANDROID && !UNITY_EDITOR
+        //       // Native Quest
+        //       pngData = displayCaptureManager.ScreenCaptureTexture.EncodeToPNG();
+        //#else
+        Color32[] pixels = new Color32[200 * 200];
         for (int y = 0; y < 200; y++)
         {
             for (int x = 0; x < 200; x++)
             {
-                int index = y * 200 + x;
-                pixels[index] = new Color32(
-                    (byte)(x > 10 && x < 20 ? 255 : 0),  // R
-                    (byte)(y > 10 && y < 20 ? 255 : 0),  // G
-                    0,                                    // B
-                    255                                   // A
+                pixels[y * 200 + x] = new Color32(
+                    (byte)(x > 10 && x < 20 ? 255 : 0),
+                    (byte)(y > 10 && y < 20 ? 255 : 0),
+                    0,
+                    255
                 );
             }
         }
-
-        // Create texture and encode to PNG
         Texture2D tex = new Texture2D(200, 200);
         tex.SetPixels32(pixels);
         tex.Apply();
-        byte[] pngData = tex.EncodeToPNG();
+        pngData = tex.EncodeToPNG();
+        //#endif
 
         form.AddBinaryData("file", pngData, "image.png", "image/png");
 
@@ -211,7 +217,7 @@ public class ChatClientSimple : MonoBehaviour
         foreach (Contour contour in contours)
         {
             GameObject spawnedObject = Instantiate(prefabToSpawn, canvas.transform);
-            spawnedObject.transform.localPosition = new Vector3(contour.x ,
+            spawnedObject.transform.localPosition = new Vector3(contour.x,
                                                               contour.y,
                                                               -50);
         }
