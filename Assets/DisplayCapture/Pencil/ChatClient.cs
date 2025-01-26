@@ -10,9 +10,10 @@ using OpenAI;
 using OpenAI.Chat;
 using OpenAI.Models;
 using System.Threading.Tasks;
+using System.Net;
 
 [RequireComponent(typeof(WhisperManager), typeof(AudioSource))]
-public class ServerQueryUI : MonoBehaviour
+public class ChatClientUI : MonoBehaviour
 {
     [Header("UI References")]
     [SerializeField] private TextMeshProUGUI recognizedText;
@@ -27,17 +28,17 @@ public class ServerQueryUI : MonoBehaviour
     private const string MX_Ink_MiddleForce = "middle";
     private readonly List<Message> _messages = new();
 
-    private const string ELEVENLABS_API_URL = "https://api.elevenlabs.io/v1/text-to-speech/";
-    private const string VOICE_ID = "your_voice_id"; // Replace with your voice ID
+    private const string ELEVENLABS_API_URL = "https://api.elevenlabs.io/v2/text-to-speech/";
+    private const string VOICE_ID = "Adam"; // Replace with your voice ID
 
-    [Serializable]
-    private class QueryData
-    {
-        public string text;
-        public string type;
-        public string system_prompt;
-        public string client_id;
-    }
+    //[Serializable]
+    //private class QueryData
+    //{
+    //    public string text;
+    //    public string type;
+    //    public string system_prompt;
+    //    public string client_id;
+    //}
 
     private void Awake()
     {
@@ -98,41 +99,48 @@ public class ServerQueryUI : MonoBehaviour
     private async Task ProcessQuery(string userInput)
     {
         _messages.Add(new Message(Role.User, userInput));
-        
-        var api = new OpenAIClient(new OpenAIAuthentication(""));
-        var chatRequest = new ChatRequest(_messages, Model.GPT4);
-        var response = await api.ChatEndpoint.GetCompletionAsync(chatRequest);
-        var choice = response.FirstChoice;
-        _messages.Add(choice.Message);
-        
-        outputText.text = choice.Message.Content.ToString();
-        StartCoroutine(ConvertTextToSpeech(choice.Message.Content.ToString()));
+
+        //var api = new OpenAIClient(new OpenAIAuthentication(""));
+        //var chatRequest = new ChatRequest(_messages, Model.GPT4);
+        //var response = await api.ChatEndpoint.GetCompletionAsync(chatRequest);
+        //var choice = response.FirstChoice;
+        //_messages.Add(choice.Message);
+
+        //outputText.text = choice.Message.Content.ToString();
+        //StartCoroutine(ConvertTextToSpeech(choice.Message.Content.ToString()));
+        await Task.Yield();
+        StartCoroutine(ConvertTextToSpeech(userInput));
     }
 
     private IEnumerator ConvertTextToSpeech(string text)
     {
         string requestBody = JsonUtility.ToJson(new { text = text });
-        
-        using (UnityWebRequest request = UnityWebRequest.PostWwwForm(ELEVENLABS_API_URL + VOICE_ID, "POST"))
-        {
-            byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(requestBody);
-            request.uploadHandler = new UploadHandlerRaw(bodyRaw);
-            request.downloadHandler = new DownloadHandlerAudioClip("null", AudioType.MPEG);
-            request.SetRequestHeader("Content-Type", "application/json");
-            request.SetRequestHeader("xi-api-key", "asdasdasd");
 
-            yield return request.SendWebRequest();
+        yield return new WaitForSeconds(2f);
 
-            if (request.result == UnityWebRequest.Result.Success)
-            {
-                AudioClip clip = DownloadHandlerAudioClip.GetContent(request);
-                audioSource.clip = clip;
-                audioSource.Play();
-            }
-            else
-            {
-                Debug.LogError($"TTS Error: {request.error}");
-            }
-        }
+        string processedText = text.ToUpper();
+
+        yield break;
+        //using (UnityWebRequest request = UnityWebRequest.PostWwwForm(ELEVENLABS_API_URL + VOICE_ID, "POST"))
+        //{
+        //    byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(requestBody);
+        //    request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+        //    request.downloadHandler = new DownloadHandlerAudioClip("null", AudioType.MPEG);
+        //    request.SetRequestHeader("Content-Type", "application/json");
+        //    request.SetRequestHeader("xi-api-key", "sk_26e91c040a3ebc753e211a03a73efabb929cef7f30ac5f41");
+
+        //    yield return request.SendWebRequest();
+
+        //    if (request.result == UnityWebRequest.Result.Success)
+        //    {
+        //        AudioClip clip = DownloadHandlerAudioClip.GetContent(request);
+        //        audioSource.clip = clip;
+        //        audioSource.Play();
+        //    }
+        //    else
+        //    {
+        //        Debug.LogError($"TTS Error: {request.error}");
+        //    }
+        //}
     }
 }

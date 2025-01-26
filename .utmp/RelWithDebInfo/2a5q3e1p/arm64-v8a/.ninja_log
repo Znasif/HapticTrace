@@ -1,12 +1,23 @@
 # ninja log v5
+14	2045	7594599602042906	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	e2db9011ca1cc808
 58	255	7594599584214756	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	8e0714a2737889db
+34	1470	7594599596280767	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	3557b0f10dd2a078
 257	446	7594599585988076	D:/Projects/HapticTrace/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/2a5q3e1p/obj/arm64-v8a/libswappywrapper.so	a0b88a9732195fbe
+42	1572	7594599597345564	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	76f29f6f86272622
 1	1361	7594599595182694	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	e4e1be4362a59d0b
 26	1384	7594599595393276	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	332b315c7bd3fce6
-34	1470	7594599596280767	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	3557b0f10dd2a078
-50	1522	7594599596781781	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	ccb8b8c1e5f81ec5
-42	1572	7594599597345564	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	76f29f6f86272622
 8	1624	7594599597841589	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	c19be1b64b5dc2c5
+50	1522	7594599596781781	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	ccb8b8c1e5f81ec5
 20	1820	7594599599801150	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	bf05e715a5b5c703
-14	2045	7594599602042906	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	e2db9011ca1cc808
 2045	2175	7594599603408824	D:/Projects/HapticTrace/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/2a5q3e1p/obj/arm64-v8a/libgame.so	bb1f3bfa11344234
+97	821	7595360099504941	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	8e0714a2737889db
+821	1277	7595360103098444	D:/Projects/HapticTrace/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/2a5q3e1p/obj/arm64-v8a/libswappywrapper.so	a0b88a9732195fbe
+86	2059	7595360111101090	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	332b315c7bd3fce6
+41	2114	7595360112207407	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	e4e1be4362a59d0b
+29	2122	7595360112294035	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	3557b0f10dd2a078
+77	2175	7595360112914214	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	ccb8b8c1e5f81ec5
+54	2310	7595360113863054	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	76f29f6f86272622
+17	2483	7595360116023230	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	c19be1b64b5dc2c5
+65	2798	7595360119215070	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	bf05e715a5b5c703
+8	3027	7595360121406717	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	e2db9011ca1cc808
+3027	3276	7595360123777725	D:/Projects/HapticTrace/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/2a5q3e1p/obj/arm64-v8a/libgame.so	bb1f3bfa11344234

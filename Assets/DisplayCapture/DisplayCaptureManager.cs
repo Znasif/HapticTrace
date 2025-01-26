@@ -11,8 +11,9 @@ namespace Anaglyph.DisplayCapture
 
 		public bool startScreenCaptureOnStart = true;
 		public bool flipTextureOnGPU = false;
+		public byte[] imageBytes;
 
-		[SerializeField] private Vector2Int textureSize = new(1024, 1024);
+        [SerializeField] private Vector2Int textureSize = new(1024, 1024);
 		public Vector2Int Size => textureSize;
 
 		private Texture2D screenTexture;
@@ -28,7 +29,7 @@ namespace Anaglyph.DisplayCapture
 		public UnityEvent onStopped = new();
 		public UnityEvent onNewFrame = new();
 
-		private unsafe sbyte* imageData;
+		public unsafe sbyte* imageData;
 		private int bufferSize;
 
 		private class AndroidInterface
@@ -105,6 +106,14 @@ namespace Anaglyph.DisplayCapture
 		private unsafe void OnNewFrameAvailable()
 		{
 			if (imageData == default) return;
+			else
+			{
+                imageBytes = new byte[bufferSize];
+                for (int i = 0; i < bufferSize; i++)
+                {
+                    imageBytes[i] = (byte)imageData[i];
+                }
+            }
 			screenTexture.LoadRawTextureData((IntPtr)imageData, bufferSize);
 			screenTexture.Apply();
 
